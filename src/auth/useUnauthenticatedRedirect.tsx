@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "./AuthContext";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 /**
  * Redirects user to another page if not authenticated.

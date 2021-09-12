@@ -7,8 +7,6 @@ import {
   Th,
   Tbody,
   Td,
-  Tfoot,
-  Button,
   IconButton,
 } from "@chakra-ui/react";
 
