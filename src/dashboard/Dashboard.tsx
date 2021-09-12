@@ -26,7 +26,7 @@ export function Dashboard(): JSX.Element {
     };
     mutate(mutatedUser, false);
 
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/v1/auth/queries`, {
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/v1/queries`, {
       method: "PATCH",
       body: JSON.stringify({ searchQueries: mutatedUser.searchQueries }),
       credentials: "include",
@@ -44,7 +44,7 @@ export function Dashboard(): JSX.Element {
     };
     mutate(mutatedUser, false);
 
-    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/v1/auth/queries`, {
+    return fetch(`${process.env.REACT_APP_API_ENDPOINT}/v1/queries`, {
       method: "PATCH",
       body: JSON.stringify({ searchQueries: mutatedUser.searchQueries }),
       credentials: "include",
