@@ -59,7 +59,7 @@ export function AddSearchQueryForm(props: AddSearchQueryFormProps) {
                           title="Add search query"
                           aria-label="Add search query"
                           icon={<AddIcon />}
-                          colorScheme="teal"
+                          colorScheme="blue"
                           isLoading={props.isSubmitting}
                           type="submit"
                         />

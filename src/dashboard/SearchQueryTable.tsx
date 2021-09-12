@@ -1,7 +1,7 @@
 import { DeleteIcon } from "@chakra-ui/icons";
 import {
   Table,
-  TableCaption,
+  Text,
   Thead,
   Tr,
   Th,
@@ -19,28 +19,34 @@ export function SearchQueryTable(props: SearchQueryTableProps) {
   const { searchQueries, queryRemoveClicked } = props;
 
   return (
-    <Table variant="simple">
-      <TableCaption placement="top">Your active search queries</TableCaption>
-      <Thead>
-        <Tr>
-          <Th>Search query</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {searchQueries.map((searchQuery) => (
-          <Tr key={searchQuery}>
-            <Td>{searchQuery}</Td>
-            <Td isNumeric>
-              <IconButton
-                title="Remove search query"
-                aria-label="Remove search query"
-                icon={<DeleteIcon />}
-                onClick={() => queryRemoveClicked(searchQuery)}
-              ></IconButton>
-            </Td>
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
+    <>
+      {searchQueries.length === 0 && (
+        <Text>No active search queries. Add one now.</Text>
+      )}
+      {searchQueries.length > 0 && (
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th px={0}>Search query</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {searchQueries.map((searchQuery) => (
+              <Tr key={searchQuery}>
+                <Td px={0}>{searchQuery}</Td>
+                <Td px={0} isNumeric>
+                  <IconButton
+                    title="Remove search query"
+                    aria-label="Remove search query"
+                    icon={<DeleteIcon />}
+                    onClick={() => queryRemoveClicked(searchQuery)}
+                  ></IconButton>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      )}
+    </>
   );
 }

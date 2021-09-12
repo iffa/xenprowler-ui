@@ -1,13 +1,4 @@
-import {
-  Table,
-  TableCaption,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  Link,
-} from "@chakra-ui/react";
+import { Table, Thead, Tr, Th, Tbody, Td, Link } from "@chakra-ui/react";
 import { SearchResult } from "../auth/User";
 
 interface SearchResultsTableProps {
@@ -27,24 +18,33 @@ export function SearchResultsTable(props: SearchResultsTableProps) {
 
   return (
     <Table variant="simple">
-      <TableCaption placement="top">Search results</TableCaption>
       <Thead>
         <Tr>
-          <Th>Title</Th>
-          <Th>Search query</Th>
-          <Th isNumeric>Confidence</Th>
+          <Th pl={0} pr={4} py={4}>
+            Title
+          </Th>
+          <Th px={4} py={4}>
+            Search query
+          </Th>
+          <Th pl={4} pr={0} py={4} isNumeric>
+            Confidence
+          </Th>
         </Tr>
       </Thead>
       <Tbody>
         {searchResults.map((result) => (
           <Tr key={result.item.title}>
-            <Td>
+            <Td pl={0} pr={4} py={4}>
               <Link href={`${linkBaseUrl}${result.item.link}`} isExternal>
                 {result.item.title}
               </Link>
             </Td>
-            <Td>{result.query}</Td>
-            <Td isNumeric>{formatConfidence(result.score)}</Td>
+            <Td px={4} py={4}>
+              {result.query}
+            </Td>
+            <Td pl={4} pr={0} py={4} isNumeric>
+              {formatConfidence(result.score)}
+            </Td>
           </Tr>
         ))}
       </Tbody>

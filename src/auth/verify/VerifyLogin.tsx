@@ -1,14 +1,16 @@
-import { Container } from "@chakra-ui/layout";
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useSearchParams } from "react-router-dom";
 import useAuth from "../AuthContext";
+import { User } from "../User";
 
 export default function VerifyLogin() {
+  const [verifying, setVerifying] = useState(true);
   const [searchParams] = useSearchParams();
   const { mutate } = useAuth();
 
   useEffect(() => {
     const verifyToken = async (email: string, token: string): Promise<any> => {
+      setVerifying(true);
       const url = new URL(
         `${process.env.REACT_APP_API_ENDPOINT}/v1/auth/verify`
       );
@@ -16,7 +18,8 @@ export default function VerifyLogin() {
 
       return fetch(url.toString(), { credentials: "include" })
         .then((response) => response.json())
-        .then((user) => mutate(user));
+        .then((user: User) => mutate(user))
+        .finally(() => setVerifying(false));
     };
 
     const email = searchParams.get("email");
@@ -28,7 +31,12 @@ export default function VerifyLogin() {
     }
 
     verifyToken(email, token);
-  }, [searchParams, mutate]);
+  }, [searchParams, mutate, setVerifying]);
 
-  return <Container>verify-login</Container>;
+  return (
+    <>
+      {verifying && <p>Verifying credentials, please wait...</p>}
+      {!verifying && <Navigate to="/dashboard" replace={true} />}
+    </>
+  );
 }

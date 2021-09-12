@@ -1,4 +1,3 @@
-import { Container } from "@chakra-ui/layout";
 import {
   Button,
   FormControl,
@@ -34,52 +33,50 @@ export default function RequestLogin() {
 
   return (
     <>
-      <Container my={4}>
-        <Formik
-          initialValues={{ email: "" }}
-          onSubmit={async (values, actions) => {
-            const { email } = values;
+      <Formik
+        initialValues={{ email: "" }}
+        onSubmit={async (values, actions) => {
+          const { email } = values;
 
-            return requestAuthToken(email).then(() => {
-              actions.setSubmitting(false);
-              onOpen();
-            });
-          }}
-        >
-          {(props) => (
-            <Form>
-              <Field name="email" validate={validateEmail}>
-                {({ field, form }: any) => (
-                  <FormControl
-                    isInvalid={form.errors.email && form.touched.email}
-                  >
-                    <FormLabel htmlFor="email">Email address</FormLabel>
-                    <Input
-                      {...field}
-                      type="email"
-                      id="email"
-                      placeholder="gaben@valvesoftware.com"
-                    />
-                    <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                    <FormHelperText>
-                      We'll send a login link to your inbox. We won't spam you,
-                      promise.
-                    </FormHelperText>
-                  </FormControl>
-                )}
-              </Field>
-              <Button
-                mt={4}
-                colorScheme="teal"
-                isLoading={props.isSubmitting}
-                type="submit"
-              >
-                Send login link
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </Container>
+          return requestAuthToken(email).then(() => {
+            actions.setSubmitting(false);
+            onOpen();
+          });
+        }}
+      >
+        {(props) => (
+          <Form>
+            <Field name="email" validate={validateEmail}>
+              {({ field, form }: any) => (
+                <FormControl
+                  isInvalid={form.errors.email && form.touched.email}
+                >
+                  <FormLabel htmlFor="email">Email address</FormLabel>
+                  <Input
+                    {...field}
+                    type="email"
+                    id="email"
+                    placeholder="gaben@valvesoftware.com"
+                  />
+                  <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                  <FormHelperText>
+                    We'll send a login link to your inbox. We won't spam you,
+                    promise.
+                  </FormHelperText>
+                </FormControl>
+              )}
+            </Field>
+            <Button
+              mt={4}
+              colorScheme="blue"
+              isLoading={props.isSubmitting}
+              type="submit"
+            >
+              Send login link
+            </Button>
+          </Form>
+        )}
+      </Formik>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>

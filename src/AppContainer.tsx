@@ -1,7 +1,15 @@
-import { Container, Flex, Heading } from "@chakra-ui/layout";
-import { Button, HStack, Spacer, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Flex,
+  HStack,
+  Spacer,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import useAuth from "./auth/AuthContext";
+import logo from "./AppIcon.svg";
 
 export function AppContainer({
   children,
@@ -21,14 +29,24 @@ export function AppContainer({
   };
 
   return (
-    <Container maxW="container.lg">
-      <Flex as="nav" flexDir="row" align="center" py={2}>
-        <Heading>xenprowler</Heading>
+    <Container maxW="container.lg" py={4}>
+      <Flex
+        as="nav"
+        flexDir="row"
+        align="center"
+        p={4}
+        backgroundColor="white"
+        boxShadow="lg"
+        borderRadius="lg"
+        border="1px"
+        borderColor="gray.200"
+      >
+        <Image src={logo} boxSize="64px" />
         <Spacer />
         {!loading && (
           <HStack spacing={2}>
             <Text>{!!user ? user.id : "Not logged in"}</Text>
-            <Button size="md" onClick={authButtonClick}>
+            <Button size="sm" variant="outline" onClick={authButtonClick}>
               {!!user ? "Log out" : "Log in"}
             </Button>
           </HStack>

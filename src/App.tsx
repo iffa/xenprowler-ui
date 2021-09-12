@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import { Route, Routes } from "react-router";
 import { AppContainer } from "./AppContainer";
@@ -29,17 +30,19 @@ export const fetcher = async (url: RequestInfo) => {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppContainer>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/auth/login" element={<RequestLogin />} />
-          <Route path="/auth/login/callback" element={<VerifyLogin />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </AppContainer>
-    </AuthProvider>
+    <Box backgroundColor="gray.50" height="100vh">
+      <AuthProvider>
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/auth/login" element={<RequestLogin />} />
+            <Route path="/auth/login/callback" element={<VerifyLogin />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </AppContainer>
+      </AuthProvider>
+    </Box>
   );
 }
 

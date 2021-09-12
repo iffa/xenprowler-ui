@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import useSWR from "swr";
 import { fetcher, HttpError } from "../App";
 import useAuth from "../auth/AuthContext";
@@ -55,18 +55,52 @@ export function Dashboard(): JSX.Element {
   };
 
   return (
-    <VStack spacing={4}>
-      <AddSearchQueryForm
-        searchQueries={user?.searchQueries || []}
-        querySubmitted={handleSearchQueryAdd}
-      />
-      <SearchQueryTable
-        searchQueries={user?.searchQueries || []}
-        queryRemoveClicked={handleSearchQueryRemove}
-      ></SearchQueryTable>
-      <SearchResultsTable
-        searchResults={searchResults || []}
-      ></SearchResultsTable>
+    <VStack spacing={4} mt={8}>
+      <Box
+        as="section"
+        width="full"
+        boxShadow="md"
+        borderRadius="lg"
+        border="1px"
+        borderColor="gray.200"
+        backgroundColor="white"
+        p={4}
+      >
+        <AddSearchQueryForm
+          searchQueries={user?.searchQueries || []}
+          querySubmitted={handleSearchQueryAdd}
+        />
+      </Box>
+      <Box
+        as="section"
+        width="full"
+        boxShadow="md"
+        borderRadius="lg"
+        border="1px"
+        borderColor="gray.200"
+        backgroundColor="white"
+        p={4}
+      >
+        <SearchQueryTable
+          searchQueries={user?.searchQueries || []}
+          queryRemoveClicked={handleSearchQueryRemove}
+        ></SearchQueryTable>
+      </Box>
+      <Box
+        as="section"
+        width="full"
+        boxShadow="md"
+        borderRadius="lg"
+        border="1px"
+        borderColor="gray.200"
+        backgroundColor="white"
+        overflow="auto"
+        p={4}
+      >
+        <SearchResultsTable
+          searchResults={searchResults || []}
+        ></SearchResultsTable>
+      </Box>
     </VStack>
   );
 }
